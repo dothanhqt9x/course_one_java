@@ -89,7 +89,7 @@ public class test2 {
 
         int max = 0;
         String frequent = names.getFirst();
-        for (int i = 1; i < names.size(); i++) {
+        for (int i = 0; i < names.size(); i++) {
             if (counts.get(i) > max) {
                 max = counts.get(i);
                 frequent = names.get(i);
