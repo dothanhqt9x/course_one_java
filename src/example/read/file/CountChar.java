@@ -1,4 +1,4 @@
-package example_read_file;
+package example.read.file;
 
 import java.util.ArrayList;
 import java.util.HashMap;

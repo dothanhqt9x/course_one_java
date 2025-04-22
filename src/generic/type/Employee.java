@@ -1,13 +1,13 @@
-package collections;
+package generic.type;
 
-public class Student {
-    private int id, age;
+public class Employee {
+    private int id, salary;
     private String name;
 
-    public Student(int id, String name, int age) {
+    public Employee(int id, String name, int salary) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.salary = salary;
     }
 
     public String getName() {
@@ -15,7 +15,7 @@ public class Student {
     }
 
     public int getAge() {
-        return age;
+        return salary;
     }
 
     public int getId() {
@@ -25,21 +25,13 @@ public class Student {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
+                ", salary=" + salary +
                 '}';
     }
 }

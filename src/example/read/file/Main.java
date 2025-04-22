@@ -1,4 +1,4 @@
-package example_read_file;
+package example.read.file;
 
 public class Main {
 
