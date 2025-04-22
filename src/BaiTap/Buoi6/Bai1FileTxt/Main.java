@@ -52,28 +52,55 @@ public class Main {
     }
 
     public static void sortStudentWithParam(List<Student> students, String param, String sort) {
-        if (sort == "ASC") {
-            if (param == "id") {
-                students.sort(Comparator.comparing(Student::getId));
-            } else if (param == "name") {
-                students.sort(Comparator.comparing(Student::getName));
-            } else if (param == "age") {
-                students.sort(Comparator.comparing(Student::getAge));
-            }
+        Comparator<Student> comparator;
+        switch (param) {
+            case "id":
+                comparator = Comparator.comparing(Student::getId);
+                break;
+            case "name":
+                comparator = Comparator.comparing(Student::getName);
+                break;
+            case "age":
+                comparator = Comparator.comparing(Student::getAge);
+                break;
+            default:
+                System.out.println("Tham số sắp xếp không hợp lệ!");
+                return;
+        }
+        if ("DESC".equalsIgnoreCase(sort)) {
+            comparator = comparator.reversed();
+        }
+        students.sort(comparator);
+    }
 
-        } else {
-            if (param == "id") {
-                students.sort(Comparator.comparing(Student::getId).reversed());
-            } else if (param == "name") {
-                students.sort(Comparator.comparing(Student::getName).reversed());
-            } else if (param == "age") {
-                students.sort(Comparator.comparing(Student::getAge).reversed());
+    public static void findMaxStudentByName(List<Student> students) {
+        Map<String, Integer> hashMap = new HashMap<>();
+        for (Student student : students) {
+            Integer quantity = hashMap.get(student.getName());
+            if (quantity == null) {
+                quantity = 1;
+                hashMap.put(student.getName(), quantity);
+                continue;
+            }
+            hashMap.put(student.getName(), quantity + 1);
+        }
+
+        Map.Entry<String, Integer> maxEntry = null;
+
+        for (Map.Entry<String, Integer> item : hashMap.entrySet()) {
+            if (maxEntry == null || item.getValue() > maxEntry.getValue()) {
+                maxEntry = item;
             }
         }
+        assert maxEntry != null;
+        System.out.println(" - Tên sinh viên xuất hiện nhiều nhất: " + maxEntry.getKey());
+        System.out.println(" - Số lần xuất hiện: " + maxEntry.getValue());
+
+
     }
 
     public static String paramSort(Scanner scanner) {
-        int menuSort = 0;
+        int menuSort;
         String paramSort;
         System.out.println(" - 1. Sắp xếp theo id");
         System.out.println(" - 2. Sắp xếp theo name");
@@ -137,7 +164,8 @@ public class Main {
             System.out.println("3. Sắp xếp danh sách tăng dần");
             System.out.println("4. Sắp xếp danh sách giảm dần");
             System.out.println("5. Xóa");
-            System.out.println("6. Thoát");
+            System.out.println("6. Tìm ra tên có nhiều sinh viên nhất");
+            System.out.println("7. Thoát");
             System.out.print("Xin mời bạn chọn chức năng: ");
             menu = scanner.nextInt();
             scanner.nextLine();
@@ -157,8 +185,12 @@ public class Main {
 
             } else if (menu == 5) {
                 deleteStudentById(students, scanner);
+
+            } else if (menu == 6) {
+                findMaxStudentByName(students);
+
             }
 
-        } while (menu != 6);
+        } while (menu != 7);
     }
 }
