@@ -28,9 +28,9 @@ public class PersonUtils {
         return new Employee(id, name, salary);
     }
 
-    public static String inputName(Scanner scanner, int index) {
+    public static String inputName(int index) {
         System.out.print("Nhập họ tên thứ " + index + ": ");
-        scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 }
