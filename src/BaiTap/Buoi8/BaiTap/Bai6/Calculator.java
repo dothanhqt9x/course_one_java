@@ -1,7 +1,7 @@
 package BaiTap.Buoi8.BaiTap.Bai6;
 
 public class Calculator<T extends Number> {
-    private T[] arr;
+    private final T[] arr;
 
     public Calculator(T[] arr) {
         this.arr = arr;

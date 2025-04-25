@@ -4,6 +4,7 @@ import BaiTap.Buoi8.BaiTap.Bai3.Student;
 import BaiTap.Buoi8.BaiTap.Bai4.Employee;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class PersonModel<T> {
     public ArrayList<T> li = new ArrayList<>();
@@ -32,6 +33,21 @@ public class PersonModel<T> {
         PersonModel<String> personModel3 = new PersonModel<>();
         personModel3.addObject("Việt 5");
         personModel3.addObject("Việt 6");
+
+        Comparator comparator = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                return 0;
+            }
+        };
+
+        Comparable comparable = new Comparable() {
+            @Override
+            public int compareTo(Object o) {
+                return 0;
+            }
+        };
+
         personModel3.display();
     }
 }
