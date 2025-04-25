@@ -28,7 +28,7 @@ public class PersonModel <T> {
 //        }
 //        System.out.println("Danh sách sinh viên vừa nhập:");
 //        studentModel.display();
-//
+
 //        PersonModel<Employee> employeeModel = new PersonModel<>();
 //        int employeeQuantity;
 //        System.out.print("Nhập số lượng nhân viên: ");

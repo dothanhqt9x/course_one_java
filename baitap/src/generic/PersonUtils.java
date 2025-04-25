@@ -30,7 +30,8 @@ public class PersonUtils {
 
     public static String inputName(Scanner scanner, int index) {
         System.out.print("Nhập họ tên thứ " + index + ": ");
-        scanner.nextLine();
-        return scanner.nextLine();
+        Scanner scanner1 = new Scanner(System.in);
+//        scanner.nextLine();
+        return scanner1.nextLine();
     }
 }
