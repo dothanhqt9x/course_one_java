@@ -3,6 +3,8 @@ package BaiTap.Buoi9.Baitap.Bai3;
 import BaiTap.Buoi9.Baitap.Bai1.Order;
 import BaiTap.Buoi9.Baitap.Bai1.OrderStatus;
 import BaiTap.Buoi9.Baitap.Bai2.MyConsumer;
+import BaiTap.Buoi9.Baitap.Bai2.MyFunction;
+import BaiTap.Buoi9.Baitap.Bai2.MyPredicate;
 import BaiTap.Buoi9.Baitap.Bai2.MySupplier;
 import BaiTap.Buoi9.Baitap.dto.OrderDto;
 
@@ -11,7 +13,8 @@ import java.util.function.Supplier;
 
 public class Main {
     public static void displayListOrder(List<Order> orders) {
-        orders.forEach(new Order()::displayOrders);
+        MyConsumer myConsumer = System.out::println;
+        orders.forEach(myConsumer::displayOrders);
     }
 
     public static List<Order> generateOrders() {
@@ -30,7 +33,10 @@ public class Main {
     }
 
     public static Order findOrderById(List<Order> orders, int id) {
-        return orders.stream().filter(order -> order.getId() == id).findFirst().orElse(null);
+        MyPredicate myPredicate = (order) -> {
+            return order.getId() == id;
+        };
+        return orders.stream().filter(myPredicate::isCheckEquaId).findFirst().orElse(null);
     }
 
     public static void createOrder(List<Order> orders, Scanner scanner) {
@@ -63,14 +69,19 @@ public class Main {
     public static void getProductNameById(List<Order> orders, Scanner scanner) {
         System.out.print("Nhập ID: ");
         int id = scanner.nextInt();
-        OrderDto orderDto = orders.stream().filter(order -> {
+        MyPredicate myPredicate = (order) -> {
             return order.getId() == id;
-        }).map(new Order()::getChangeOrderToOrderDto).findFirst().orElse(null);
+        };
+
+        MyFunction myFunction = (order) -> {
+            return new OrderDto(order.getProduct());
+        };
+        OrderDto orderDto = orders.stream().filter(myPredicate::isCheckEquaId).map(myFunction::getChangeOrderToOrderDto).findFirst().orElse(null);
         System.out.println("Product name của ID = " + id + " là " + orderDto.getProduct());
     }
 
     public static List<Order> getOrderMoreThan600(List<Order> orders) {
-        return orders.stream().filter(Order::getPriceMoreThan600).toList();
+        return orders.stream().filter(order -> order.getPrice() > 600).toList();
     }
 
     public static Order generateAutoOrder() {
@@ -110,7 +121,7 @@ public class Main {
             } else if (menu == 4) {
                 getProductNameById(orders, scanner);
 
-            }else if (menu == 5) {
+            } else if (menu == 5) {
                 Order order = generateAutoOrder();
                 orders.add(order);
 

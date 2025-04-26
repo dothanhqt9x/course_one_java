@@ -8,7 +8,7 @@ import BaiTap.Buoi9.Baitap.dto.OrderDto;
 
 import java.util.List;
 
-public class Order implements MyConsumer, MyFunction, MyPredicate, MySupplier {
+public class Order {
     private int id;
     private String product;
     private int quantity;
@@ -25,6 +25,9 @@ public class Order implements MyConsumer, MyFunction, MyPredicate, MySupplier {
 
     public Order(int id, String product, int quantity, double price, OrderStatus status) {
         this.id = id;
+
+
+        
         this.product = product;
         this.quantity = quantity;
         this.price = price;
@@ -83,24 +86,4 @@ public class Order implements MyConsumer, MyFunction, MyPredicate, MySupplier {
                 '}';
     }
 
-
-    @Override
-    public OrderDto getChangeOrderToOrderDto(Order order) {
-        return new OrderDto(order.getProduct());
-    }
-
-    @Override
-    public boolean getPriceMoreThan600() {
-        return this.getPrice() > 600;
-    }
-
-    @Override
-    public Order generateOrder() {
-        return this;
-    }
-
-    @Override
-    public void displayOrders(Order order) {
-        System.out.println(order.toString());
-    }
 }

@@ -4,5 +4,5 @@ import BaiTap.Buoi9.Baitap.Bai1.Order;
 
 @FunctionalInterface
 public interface MyPredicate {
-     boolean getPriceMoreThan600 ();
+     boolean isCheckEquaId (Order order);
 }
