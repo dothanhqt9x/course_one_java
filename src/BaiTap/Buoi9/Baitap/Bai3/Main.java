@@ -81,7 +81,8 @@ public class Main {
     }
 
     public static List<Order> getOrderMoreThan600(List<Order> orders) {
-        return orders.stream().filter(order -> order.getPrice() > 600).toList();
+
+        return orders.stream().filter(Order::isOrderMoreThan600).toList();
     }
 
     public static Order generateAutoOrder() {

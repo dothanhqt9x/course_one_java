@@ -86,4 +86,8 @@ public class Order {
                 '}';
     }
 
+    public static boolean isOrderMoreThan600(Order order) {
+        return order.getPrice() > 600;
+    }
+
 }
