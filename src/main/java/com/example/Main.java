@@ -1,12 +1,15 @@
 package com.example;
 
+import com.example.dao.RoleDAO;
+import com.example.dao.impl.RoleDAOImpl;
+import com.example.dao.impl.UserDAOImpl;
+import com.example.entity.RoleEntity;
 import com.example.entity.UserEntity;
 import com.example.entity.UserKey;
-import com.example.utils.BCriptUtil;
-import com.example.utils.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -15,6 +18,7 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
+
         UserEntity userEntity = new UserEntity();
         userEntity.setUserKey(new UserKey(1, "nva"));
         userEntity.setName("Nguyen Van A");
@@ -27,23 +31,70 @@ public class Main {
         userEntity2.setUsername("nguyenvanb");
         userEntity2.setPassword("$2a$12$/9PAzh0pzuVcS9yO2loLGeNCRzqsQWQZlDRAWli.9P6ckrgku.WCS");
 
+        UserDAOImpl userDAOImpl = new UserDAOImpl();
 
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        userDAOImpl.createUser(userEntity);
+        userDAOImpl.createUser(userEntity2);
 
-        try(Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
+        //
+        RoleEntity  roleEntity = new RoleEntity();
+        roleEntity.setId(1);
+        roleEntity.setName("Admin");
 
-            session.persist(userEntity);
-            session.persist(userEntity2);
-            logger.info("Luu user vao DB thanh cong");
+        RoleEntity  roleEntity2 = new RoleEntity();
+        roleEntity2.setId(2);
+        roleEntity2.setName("User");
 
-            session.getTransaction().commit();
-        }catch (Exception e) {
-            logger.severe("Luu user vao DB that bai");
-            e.printStackTrace();
-        }finally {
-            HibernateUtil.closeSessionFactory();
+        RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
+        roleDAOImpl.createRole(roleEntity);
+        roleDAOImpl.createRole(roleEntity2);
+
+
+
+        //
+        Set<RoleEntity> roles = new HashSet<>();
+        roles.add(roleEntity);
+
+        userEntity.setRoles(roles);
+        userDAOImpl.updateUser(userEntity);
+
+        roles.clear();
+
+        roles.add(roleEntity2);
+        userEntity2.setRoles(roles);
+
+
+        userDAOImpl.updateUser(userEntity2);
+        //
+        for(UserEntity user : userDAOImpl.getAllUser()) {
+            System.out.println(user);
         }
+
+        //
+        logger.info("sau khi update user");
+        userEntity.setName("Nguyen Van A Update");
+        userEntity2.setName("Nguyen Van B Update");
+
+        userDAOImpl.updateUser(userEntity);
+        userDAOImpl.updateUser(userEntity2);
+
+        for(UserEntity user : userDAOImpl.getAllUser()) {
+            System.out.println(user);
+        }
+
+
+        //
+        UserEntity user3 = new UserEntity();
+        user3.setUserKey(new UserKey(3, "nvc"));
+        user3.setName("Nguyen Van C");
+        user3.setUsername("nguyenvanc");
+        user3.setPassword("pass");
+
+        userDAOImpl.createUser(user3);
+
+        //
+        userDAOImpl.deleteUser(new UserKey(3, "nvc"));
+
 
 
     }

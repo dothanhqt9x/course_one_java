@@ -14,4 +14,12 @@ import java.io.Serializable;
 public class UserKey implements Serializable {
     private int id;
     private String code;
+
+    @Override
+    public String toString() {
+        return "UserKey{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }

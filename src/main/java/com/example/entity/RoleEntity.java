@@ -37,4 +37,12 @@ public class RoleEntity {
     @OneToMany(mappedBy = "role")
     private Set<ResourceEntity> resources;
 
+    @Override
+    public String toString() {
+        return "RoleEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
 }
