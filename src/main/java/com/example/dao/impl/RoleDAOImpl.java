@@ -15,7 +15,7 @@ public class RoleDAOImpl implements RoleDAO {
     private static final Logger logger = Logger.getLogger(RoleDAOImpl.class.getName());
 
     @Override
-    public void createRole(RoleEntity roleEntity) {
+    public void saveRole(RoleEntity roleEntity) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();

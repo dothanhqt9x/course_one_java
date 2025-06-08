@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,13 +26,13 @@ public class RoleEntity {
     @ManyToMany(mappedBy = "roles")
     private Set<UserEntity> users;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_permissions",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    private Set<PermissionEntity> permissions;
+    private Set<PermissionEntity> permissions = new HashSet<>();
 
 
     @OneToMany(mappedBy = "role")
@@ -42,6 +43,7 @@ public class RoleEntity {
         return "RoleEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", permissions=" + permissions +
                 '}';
     }
 

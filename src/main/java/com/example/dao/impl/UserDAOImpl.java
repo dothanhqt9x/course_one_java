@@ -1,5 +1,7 @@
 package com.example.dao.impl;
 
+import com.example.criteria.FindByUserAndRole;
+import com.example.criteria.GetUserByName;
 import com.example.dao.UserDAO;
 import com.example.entity.UserEntity;
 import com.example.entity.UserKey;
@@ -17,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
     private static final Logger logger = Logger.getLogger(UserDAOImpl.class.getName());
 
     @Override
-    public void createUser(UserEntity userEntity) {
+    public void saveUser(UserEntity userEntity) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         try(Session session = sessionFactory.openSession()) {
@@ -101,6 +103,22 @@ public class UserDAOImpl implements UserDAO {
        }catch (Exception e) {
            logger.severe("delete user that bai");
            e.printStackTrace();
+       }
+    }
+
+    @Override
+    public List<UserEntity> getUserByName(String name) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try(Session session = sessionFactory.openSession()) {
+            return GetUserByName.getUserByName(session, name);
+        }
+    }
+
+    @Override
+    public List<UserEntity> getUserByNameAndRole(String name, String role) {
+       SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+       try(Session session = sessionFactory.openSession()) {
+           return FindByUserAndRole.findByUserAndRole(session, name, role);
        }
     }
 }

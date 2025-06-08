@@ -2,10 +2,7 @@ package com.example.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -24,4 +21,12 @@ public class PermissionEntity {
 
     @ManyToMany(mappedBy = "permissions")
     private Set<RoleEntity> roles;
+
+    @Override
+    public String toString() {
+        return "PermissionEntity{" +
+                "id=" + id +
+                ", permission='" + permission + '\''+
+                '}';
+    }
 }

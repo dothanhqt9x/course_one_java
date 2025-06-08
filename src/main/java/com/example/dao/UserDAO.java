@@ -2,12 +2,13 @@ package com.example.dao;
 
 import com.example.entity.UserEntity;
 import com.example.entity.UserKey;
+import org.hibernate.Session;
 
 import java.util.List;
 
 public interface UserDAO {
 
-    void createUser(UserEntity userEntity);
+    void saveUser(UserEntity userEntity);
 
     List<UserEntity> getAllUser();
 
@@ -16,4 +17,9 @@ public interface UserDAO {
     void updateUser(UserEntity userEntity);
 
     void deleteUser(UserKey userKey);
+
+
+    List<UserEntity> getUserByName(String name);
+
+    List<UserEntity> getUserByNameAndRole(String name, String role);
 }

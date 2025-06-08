@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RoleDAO {
 
-    void createRole(RoleEntity roleEntity);
+    void saveRole(RoleEntity roleEntity);
 
     List<RoleEntity> getAllRole();
 
