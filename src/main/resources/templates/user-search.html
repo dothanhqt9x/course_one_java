@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Xin chào!</h1>
+
+<p>Thêm người dùng mới tại <a href="/user/add">đây</a></p>
+<p>xem danh sách sản phẩm tại <a href="/product">đây</a></p>
+
+<h1>Danh sách người dùng:</h1>
+
+<table>
+    <thead>
+    <th>id</th>
+    <th>Tên</th>
+    <th>Giới tính</th>
+    <th>Ngày sinh</th>
+    <th>Địa chỉ</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getGender()}"></td>
+        <td th:text="${user.getBirthday()}"></td>
+        <td th:text="${user.getAddress()}"></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<h1>Xoá người dùng:</h1>
+<form action="/user/delete" method="get">
+    <label>Nhập ID người dùng để xóa:</label>
+    <input type="number" name="id" placeholder="Nhập ID">
+
+    <button type="submit">XÓA</button>
+</form>
+
+<h1>Chỉnh sửa thông tin người dùng</h1>
+<form action="/user/update" method="get">
+
+    <label>Nhập ID người dùng cần sửa:</label>
+    <input type="number" name="id" placeholder="Nhập ID">
+
+    <button type="submit">SỬA THÔNG TIN</button>
+</form>
+
+
+<h1>Tìm kiếm người dùng</h1>
+<form action="/user/search" method="get">
+    <div>
+        <label>Nhập ID người dùng cần tìm</label>
+        <input type="number" name="id" placeholder="Nhập ID" th:value="${valuedID}">
+    </div>
+    <br>
+    <div>
+        <label>Nhập tên:</label>
+        <input type="text" name="name" placeholder="Nhập tên" th:value="${valuedName}">
+    </div>
+    <br>
+    <div>
+        <label>Nhập giới tính:</label>
+        <input type="text" name="gender" placeholder="Nhập giới tính" th:value="${valuedGender}">
+    </div>
+    <br>
+    <div>
+        <label>Nhập địa chỉ:</label>
+        <input type="text" name="address" placeholder="Nhập địa chỉ" th:value="${valueAddress}">
+    </div>
+    <br>
+    <button type="submit">TÌM KIẾM</button>
+</form>
+
+<h2 style="color:blue">Kết quả tìm kiếm:</h2>
+
+<table>
+    <thead>
+        <th>id</th>
+        <th>Tên</th>
+        <th>Giới tính</th>
+        <th>Ngày sinh</th>
+        <th>Địa chỉ</th>
+    </thead>
+
+    <tbody>
+        <tr th:if="${userEntity != null}">
+            <td th:text="${userEntity.getId()}"></td>
+            <td th:text="${userEntity.getName()}"></td>
+            <td th:text="${userEntity.getGender()}"></td>
+            <td th:text="${userEntity.getBirthday()}"></td>
+            <td th:text="${userEntity.getAddress()}"></td>
+        </tr>
+
+        <tr th:if="${userEntity == null}" th:each="user : ${listUser}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getGender()}"></td>
+            <td th:text="${user.getBirthday()}"></td>
+            <td th:text="${user.getAddress()}"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang sản phẩm</title>
+</head>
+<body>
+<p>Thêm sản phẩm tại <a href="/product/add">đây</a></p>
+
+<h1>Danh sách Sản Phẩm</h1>
+
+<table>
+    <thead>
+    <th>id</th>
+    <th>Tên</th>
+    <th>Số lượng</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getQuantity()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Tìm sản phẩm theo ID</h1>
+<form action="/product/search" method="get">
+    <Label>Nhập ID sản phẩm:</Label>
+    <input type="number" placeholder="Nhập ID sản phẩm" name="id" th:value="${valudId}" >
+    <button type="submit">TÌM KIẾM</button>
+</form>
+
+<H3>Kết quả tìm kiếm:</H3>
+
+<table>
+    <thead>
+    <th>id</th>
+    <th>Tên</th>
+    <th>Số lượng</th>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getQuantity()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<h1>Chỉnh sửa thông tin của <span th:text="${dto.getName()}"></span> có id = <span th:text="${valueID}"></span></h1>
+
+<form action="/user/update" method="post">
+
+
+    <div>
+        <input type="hidden" name="id" th:value="${valueID}">
+    </div>
+
+
+    <div>
+        <label>Nhập tên:</label>
+        <input type="text" name="name" placeholder="Nhập tên" th:value="${dto.getName()}">
+    </div>
+
+    <br>
+    <div>
+        <label>Nhập ngày sinh:</label>
+        <input type="text" name="birthday" placeholder="Nhập ngày sinh" th:value="${dto.getBirthday()}">
+    </div>
+
+    <br>
+    <div>
+        <label>Nhập giới tính:</label>
+        <input type="text" name="gender" placeholder="Nhập giới tính" th:value="${dto.getGender()}">
+    </div>
+    <br>
+    <div>
+        <label>Nhập địa chỉ:</label>
+        <input type="text" name="address" placeholder="Nhập địa chỉ" th:value="${dto.getAddress()}">
+    </div>
+    <br>
+
+    <button type="submit">SỬA THÔNG TIN</button>
+
+</form>
+
+<br>
+<a href="/user"><button>Quay lại Danh sách người dùng</button></a>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sản phẩm</title>
+</head>
+<body>
+<h1>Thêm sản phẩm mới</h1>
+
+<form th:action="@{/product/add}"  method="post">
+    <div>
+        <label>Nhập tên sản phẩm: </label>
+        <input type="text" placeholder="Tên sản phẩm mới" name="name" required>
+    </div>
+    <br>
+    <div>
+        <label>Nhập số lượng sản phẩm:</label>
+        <input  type="number" placeholder="Số lượng sản phẩm mới" name="quantity" required>
+    </div>
+    <br>
+    <button type="submit">THÊM SẢN PHẨM</button>
+
+</form>
+
+</body>
+</html>
