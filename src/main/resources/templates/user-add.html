@@ -9,17 +9,17 @@
 
 <form action="/user/add" method="post">
    <div>
-       <label>Nhập tên (tối thiểu 6 ký tự):</label>
+       <label>Nhập tên <span style="color:blue">(tối thiểu 6 ký tự và không dấu)</span>:</label>
        <input type="text" name="name" placeholder="Nhập tên">
    </div>
     <br>
     <div>
-        <label>Nhập giới tính (MALE/FEMALE):</label>
+        <label>Nhập giới tính <span style="color:blue">(MALE/FEMALE)</span>:</label>
         <input type="text" name="gender" placeholder="Nhập giới tính">
     </div>
     <br>
     <div>
-        <label>Nhập ngày sinh (Định dạng dd-MM-YYYY):</label>
+        <label>Nhập ngày sinh <span style="color:blue">(Định dạng dd-MM-YYYY)</span>:</label>
         <input type="text" name="birthday" placeholder="Nhập ngày sinh">
     </div>
     <br>
@@ -30,5 +30,8 @@
     <br>
     <button type="submit">THÊM</button>
 </form>
+<br>
+<a href="/user"><button>Quay lại Danh sách người dùng</button></a>
+
 </body>
 </html>

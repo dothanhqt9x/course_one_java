@@ -78,7 +78,12 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update(@RequestParam Integer id, @ModelAttribute UserRequestDTO userRequestDTO) {
+    public String update(@RequestParam Integer id, @Valid @ModelAttribute UserRequestDTO userRequestDTO,BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("valueID", id);
+            model.addAttribute("dto", userMapper.toUserRequestDTO(userService.getUserById(id)));
+            return "user-update";
+        }
         userService.updateUser(id, userRequestDTO);
         return "user-update-success";
     }

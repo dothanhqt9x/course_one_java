@@ -5,7 +5,7 @@
     <title>Edit</title>
 </head>
 <body>
-<h1>Chỉnh sửa thông tin của <span th:text="${dto.getName()}"></span> có id = <span th:text="${valueID}"></span></h1>
+<h1>Chỉnh sửa thông tin của <span style="color:blue" th:text="${dto.getName()}"></span> có id = <span style="color:blue" th:text="${valueID}"></span></h1>
 
 <form action="/user/update" method="post">
 
@@ -16,19 +16,19 @@
 
 
     <div>
-        <label>Nhập tên:</label>
+        <label>Nhập tên <span style="color:blue">tối thiểu 6 ký tự và không dấu</span>:</label>
         <input type="text" name="name" placeholder="Nhập tên" th:value="${dto.getName()}">
     </div>
 
     <br>
     <div>
-        <label>Nhập ngày sinh:</label>
+        <label>Nhập ngày sinh <span style="color:blue">(yy-MM-dddd)</span>:</label>
         <input type="text" name="birthday" placeholder="Nhập ngày sinh" th:value="${dto.getBirthday()}">
     </div>
 
     <br>
     <div>
-        <label>Nhập giới tính:</label>
+        <label>Nhập giới tính <span style="color:blue">(MALE/FEMALE)</span>:</label>
         <input type="text" name="gender" placeholder="Nhập giới tính" th:value="${dto.getGender()}">
     </div>
     <br>
