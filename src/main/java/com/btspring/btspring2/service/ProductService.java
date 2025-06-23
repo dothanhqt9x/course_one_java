@@ -13,5 +13,5 @@ public interface ProductService {
 
     void addProduct(ProductRequestDTO productRequestDTO);
 
-
+    List<ProductEntity> getProductByName(String name);
 }

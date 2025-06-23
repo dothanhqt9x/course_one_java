@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
     UserEntity toUserEntity(UserRequestDTO userRequestDTO);
     UserRequestDTO toUserRequestDTO(UserEntity userEntity);
     UserEntity userSearchToUserEntity(UserSearchRequestDTO userSearchRequestDTO);

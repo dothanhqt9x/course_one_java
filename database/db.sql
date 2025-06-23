@@ -5,7 +5,10 @@ use btspring;
 create table  user(
 	id int primary key auto_increment,
     name varchar(255),
-    gender varchar(255),
+    username varchar(255),
+    password varchar(255),
+    role varchar(100),
+    gender int,
     birthday DATE,
     address varchar(255)
 );

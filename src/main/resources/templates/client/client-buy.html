@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mua hàng</title>
+</head>
+<body>
+
+<a href="/logout">
+    <button style="color:red">Đăng xuất</button>
+</a>
+
+<h3>Xin chào khách hàng <span style="color: blue" th:text="${clientInfo.getName()}"></span></h3>
+
+
+<h1>Danh sách sản phẩm SHOP hiện có:</h1>
+<table>
+    <thead>
+    <th>id</th>
+    <th>Tên</th>
+    <th>Số lượng</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="product : ${listProduct}">
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getQuantity()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<h1>Chọn sản phẩm muốn mua:</h1>
+<form action="/client/buy" method="post">
+    <div>
+        <label>Nhập tên sản phẩm</label>
+        <input type="text" name="name" placeholder="nhập tên sản phẩm">
+    </div>
+
+    <br>
+    <div>
+        <label>Nhập số lượng</label>
+        <input type="number" name="quantity" placeholder="nhập số lượng">
+    </div>
+
+    <button type="submit" style="color: green"> MUA</button>
+</form>
+
+
+<h1>Các sản phẩm <span th:text="${clientInfo.getName()}"></span> đã mua:</h1>
+<table>
+    <thead>
+    <th>id</th>
+    <th>Tên</th>
+    <th>Số lượng</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="item : ${boughtList}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getName()}"></td>
+        <td th:text="${item.getQuantity()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

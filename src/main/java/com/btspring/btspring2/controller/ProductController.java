@@ -1,4 +1,6 @@
 package com.btspring.btspring2.controller;
+import com.btspring.btspring2.anotation.CheckLogin;
+import com.btspring.btspring2.anotation.CheckRole;
 import com.btspring.btspring2.model.dto.request.ProductRequestDTO;
 import org.springframework.ui.Model;
 import com.btspring.btspring2.service.ProductService;
@@ -14,13 +16,16 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
+    @CheckLogin
+    @CheckRole("admin")
     @GetMapping("")
     public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "product/product";
     }
 
+    @CheckLogin
+    @CheckRole("admin")
     @GetMapping("/search")
     public String getProductById(@RequestParam int id, Model model) {
 
@@ -34,11 +39,15 @@ public class ProductController {
         return "product/product-result";
     }
 
+    @CheckLogin
+    @CheckRole("admin")
     @GetMapping("/add")
     public String addProduct() {
         return "product/product-add";
     }
 
+    @CheckLogin
+    @CheckRole("admin")
     @PostMapping("/add")
     public String addProduct(@ModelAttribute ProductRequestDTO productRequestDTO) {
         productService.addProduct(productRequestDTO);

@@ -21,4 +21,6 @@ public class UserProductEntity {
     private int userId;
 
     private int productId;
+
+    private int quantityBuy;
 }

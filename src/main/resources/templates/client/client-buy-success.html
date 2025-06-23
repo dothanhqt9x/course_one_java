@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mua thành công</title>
+</head>
+<body>
+<h1>Chúc mừng khách hàng <span style="color:blue" th:text="${clientInfo.getName()}"></span> đã mua thành công
+    <span style="color:blue" th:text="${product.getQuantity()}"></span> sản phẩm <span style="color:blue"
+                                                                                     th:text="${product.getName()}"></span>
+</h1>
+
+<a href="/client/buy"><button>Quay lại mua hàng</button></a>
+
+</body>
+</html>

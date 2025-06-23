@@ -23,8 +23,13 @@ public class UserEntity {
 
     private String name;
 
-    private GenderEnum gender;
+    private String username;
 
+    private String password;
+
+    private String role;
+
+    private GenderEnum gender;
 
     private LocalDate birthday;
 

@@ -22,4 +22,11 @@ public class UserRequestDTO {
     private LocalDate birthday;
 
     private String address;
+
+    private String username;
+
+    private String password;
+
+    private String role;
+
 }
