@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Users</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Danh sách Users</h1>
+
+<a th:href="@{/users/create}">Thêm User mới</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.gender}">MALE</td>
+        <td th:text="${user.birthdate}">2000-01-01</td>
+        <td th:text="${user.address}">Address</td>
+        <td>
+            <a th:href="@{'/users/edit/' + ${user.id}}">Edit</a> |
+            <a th:href="@{'/users/delete/' + ${user.id}}"
+               onclick="return confirm('Bạn có chắc muốn xoá user này?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
