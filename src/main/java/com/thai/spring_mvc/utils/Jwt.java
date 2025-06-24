@@ -48,7 +48,7 @@ public class Jwt {
     public static Jwt decode(String token) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET);
         JWTVerifier verifier = JWT.require(algorithm)
-                .withIssuer("your-app-name")
+                .withIssuer("my-app")
                 .build();
 
         DecodedJWT decoded = verifier.verify(token);
